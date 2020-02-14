@@ -1,6 +1,6 @@
 {
     "name": "google-place-provider",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "google place search api service provider",
     "main": "lib/index.js",
     "author": "yungblud",
@@ -8,6 +8,13 @@
     "repository": {
         "url": "https://github.com/yungblud/google-place-provider"
     },
+    "keywords": [
+        "google api",
+        "google place api",
+        "google place",
+        "google maps",
+        "google maps api"
+    ],
     "dependencies": {
         "axios": "^0.19.2",
         "dotenv": "^8.2.0",
