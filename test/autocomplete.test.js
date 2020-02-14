@@ -9,8 +9,8 @@ describe('autocomplete', () => {
     const googlePlace = new GooglePlace(key);
 
     it('is autocomplete api status OK', () => {
-        googlePlace.autocomplete('hello').then(result => {
-            expect(reuslt.status).toEqual('OK');
+        return googlePlace.autocomplete('hello').then(result => {
+            expect(result.status).toEqual('OK');
         });
     });
 });

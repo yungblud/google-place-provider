@@ -1,1 +1,2 @@
-export declare const googlePlaceSearchURI: string;
+export declare const googlePlaceAutocompleteURI: string;
+export declare const googlePlaceDetailsURI: string;

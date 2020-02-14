@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { googlePlaceSearchURI } from './constants';
+import { googlePlaceAutocompleteURI, googlePlaceDetailsURI } from './constants';
 import { AutocompleteHTTPResult, PlaceDetailHTTPResult } from 'types';
+
+axios.defaults.adapter = require('axios/lib/adapters/http');
 
 export default class GooglePlace {
     apiKey: string;
@@ -12,7 +14,7 @@ export default class GooglePlace {
         if (!this.apiKey) throw new Error('api key was not provided');
         try {
             const result = await axios.get(
-                `${googlePlaceSearchURI}?input=${searchWord}&language=kr&key=${this.apiKey}`
+                `${googlePlaceAutocompleteURI}?input=${searchWord}&language=kr&key=${this.apiKey}`
             );
             return result.data;
         } catch (e) {
@@ -25,7 +27,7 @@ export default class GooglePlace {
 
         try {
             const result = await axios.get(
-                `${googlePlaceSearchURI}?place_id=${placeId}&key=${this.apiKey}`
+                `${googlePlaceDetailsURI}?place_id=${placeId}&key=${this.apiKey}`
             );
             return result.data;
         } catch (e) {
