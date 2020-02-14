@@ -9,16 +9,27 @@ export default class GooglePlace {
     }
 
     async autocomplete(searchWord: string): Promise<AutocompleteHTTPResult> {
-        const result = await axios.get(
-            `${googlePlaceSearchURI}?input=${searchWord}&language=kr&key=${this.apiKey}`
-        );
-        return result.data;
+        if (!this.apiKey) throw new Error('api key was not provided');
+        try {
+            const result = await axios.get(
+                `${googlePlaceSearchURI}?input=${searchWord}&language=kr&key=${this.apiKey}`
+            );
+            return result.data;
+        } catch (e) {
+            throw e;
+        }
     }
 
     async placeDetails(placeId: string): Promise<PlaceDetailHTTPResult> {
-        const result = await axios.get(
-            `${googlePlaceSearchURI}?place_id=${placeId}&key=${this.apiKey}`
-        );
-        return result.data;
+        if (!this.apiKey) throw new Error('api key was not provided');
+
+        try {
+            const result = await axios.get(
+                `${googlePlaceSearchURI}?place_id=${placeId}&key=${this.apiKey}`
+            );
+            return result.data;
+        } catch (e) {
+            throw e;
+        }
     }
 }
