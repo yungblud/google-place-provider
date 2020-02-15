@@ -14,6 +14,10 @@ see original documents of google place
 
 # how to use
 
+```bash
+$ yarn add google-place-provider
+```
+
 1. autocomplete
 
 ```js
