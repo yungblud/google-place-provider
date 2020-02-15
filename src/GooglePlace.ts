@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { googlePlaceAutocompleteURI, googlePlaceDetailsURI } from './constants';
-import { AutocompleteHTTPResult, PlaceDetailHTTPResult } from 'types';
+import { AutocompleteHTTPResult, PlaceDetailHTTPResult } from './types';
 
 axios.defaults.adapter = require('axios/lib/adapters/http');
 

@@ -1,4 +1,4 @@
-import { AutocompleteHTTPResult, PlaceDetailHTTPResult } from 'types';
+import { AutocompleteHTTPResult, PlaceDetailHTTPResult } from './types';
 export default class GooglePlace {
     apiKey: string;
     constructor(apiKey: string);
