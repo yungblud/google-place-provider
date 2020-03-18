@@ -9,6 +9,57 @@ export interface PlaceDetailHTTPResult {
     status: Status;
 }
 
+export interface FindPlaceSearchHTTPResult {
+    candidates: Candidate[];
+    debug_log: {
+        line: any[];
+    };
+    status: Status;
+}
+
+export interface NearbySearchHTTPResult {
+    html_attributions: string[];
+    results: {
+        geometry: Geometry;
+        icon: string;
+        id: string;
+        name: string;
+        opening_hours: OpeningHours;
+        photos: Photo[];
+        place_id: string;
+        plus_code: PlusCode;
+        rating: number;
+        reference: string;
+        scope: string;
+        types: string[];
+        user_ratings_total: number;
+        vicinity: string;
+    }[];
+    status: Status;
+}
+
+export interface TextSearchHTTPResult {
+    html_attributions: string[];
+    results: {
+        formatted_address: string;
+        geometry: Geometry;
+        icon: string;
+        id: string;
+        name: string;
+        opening_hours: OpeningHours;
+        photos: Photo[];
+        place_id: string;
+        plus_code: PlusCode;
+        rating: number;
+        reference: string;
+        scope: string;
+        types: string[];
+        user_ratings_total: number;
+        vicinity: string;
+    }[];
+    status: Status;
+}
+
 export interface Prediction {
     description: string;
     id: string;
@@ -85,6 +136,32 @@ export interface Review {
     time: number;
 }
 
+export interface Candidate {
+    formatted_address: string;
+    geometry: Geometry;
+    name: string;
+    opening_hours: OpeningHours;
+    photos: Photo[];
+    rating: number;
+}
+
+export interface OpeningHours {
+    open_now: boolean;
+    weekday_text?: string[];
+}
+
+export interface Photo {
+    height: number;
+    html_attributions: string[];
+    photo_reference: string;
+    width: number;
+}
+
+export interface PlusCode {
+    compound_code: string;
+    global_code: string;
+}
+
 enum Status {
     OK = 'OK',
     ZERO_RESULTS = 'ZERO_RESULTS',
@@ -94,6 +171,86 @@ enum Status {
     UNKNOWN_ERROR = 'UNKNOWN_ERROR',
 }
 
+export enum AutocompleteTypes {
+    ESTABLISHMENT = 'establishment',
+    GEO_CODE = 'geocode',
+    CITIES = '(cities)',
+    REGIONS = '(regions)',
+}
+
 export interface AutocompleteOptions {
-    lang?: string;
+    language?: string;
+    input: string;
+    sessiontoken?: string;
+    offset?: number;
+    location?: string;
+    radius?: number;
+    types?: AutocompleteTypes;
+    components?: string;
+}
+
+export interface PlaceDetailOptions {
+    place_id: string;
+    language?: string;
+    region?: string;
+    sessiontoken?: string;
+    fields?: string;
+}
+
+export enum PlaceSearchInputTypes {
+    TEXT_QUERY = 'textquery',
+    PHONE_NUMBER = 'phonenumber',
+}
+
+export interface FindPlaceSearchOptions {
+    input: string;
+    inputtype: PlaceSearchInputTypes;
+    language?: string;
+    fields?: string;
+    locationbias?: string;
+}
+
+export enum PriceLevel {
+    MOST_EXPENSIVE = 4,
+    EXPENSIVE = 3,
+    AFFORDABLE = 2,
+    MOST_AFFORDABLE = 1,
+}
+
+export enum RankByTypes {
+    PROMINENCE = 'prominence',
+    DISTANCE = 'distance',
+}
+
+export interface NearbySearchOptions {
+    location: string;
+    radius: number;
+    keyword?: string;
+    language?: string;
+    minprice?: PriceLevel;
+    maxprice?: PriceLevel;
+    name?: string;
+    opennow?: boolean;
+    rankby?: RankByTypes;
+    type?: string;
+    pagetoken?: string;
+}
+
+export interface TextSearchOptions {
+    query: string;
+    language?: string;
+    region?: string;
+    location?: string;
+    radius?: number;
+    minprice?: PriceLevel;
+    maxprice?: PriceLevel;
+    opennow?: boolean;
+    pagetoken?: string;
+    type?: string;
+}
+
+export interface PhotoOptions {
+    photoreference: string;
+    maxheight?: number;
+    maxwidth?: number;
 }

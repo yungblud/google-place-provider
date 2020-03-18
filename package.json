@@ -1,6 +1,6 @@
 {
     "name": "google-place-provider",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "google place search api service provider",
     "main": "lib/index.js",
     "author": "yungblud",
@@ -33,6 +33,8 @@
     },
     "scripts": {
         "build": "tsc",
+        "build:watch": "nodemon --watch ./lib/index.js --exec 'ts-node' --project ./tsconfig.json ./src",
+        "dev": "ts-node-dev --respawn --transpileOnly ./src",
         "test": "jest"
     },
     "babel": {

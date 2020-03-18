@@ -1,10 +1,27 @@
 import axios from 'axios';
-import { googlePlaceAutocompleteURI, googlePlaceDetailsURI } from './constants';
+import {
+    googlePlaceAutocompleteURI,
+    googlePlaceDetailsURI,
+    googlePlaceFindPlaceSearchURI,
+    googlePlaceNearbySearchURI,
+    googlePlaceTextSearchURI,
+    googlePlacePhotoURI,
+} from './constants';
 import {
     AutocompleteHTTPResult,
     PlaceDetailHTTPResult,
     AutocompleteOptions,
+    PlaceDetailOptions,
+    FindPlaceSearchOptions,
+    FindPlaceSearchHTTPResult,
+    NearbySearchOptions,
+    NearbySearchHTTPResult,
+    TextSearchOptions,
+    TextSearchHTTPResult,
+    PhotoOptions,
 } from './types';
+import { objectToQuery } from './utils';
+import { BinaryLike } from 'crypto';
 
 axios.defaults.adapter = require('axios/lib/adapters/http');
 
@@ -15,13 +32,13 @@ export default class GooglePlace {
     }
 
     async autocomplete(
-        searchWord: string,
-        options: AutocompleteOptions = { lang: 'en' }
+        options: AutocompleteOptions
     ): Promise<AutocompleteHTTPResult> {
         if (!this.apiKey) throw new Error('api key was not provided');
         try {
+            const queryString = objectToQuery(options);
             const result = await axios.get(
-                `${googlePlaceAutocompleteURI}?input=${searchWord}&language=${options.lang}&key=${this.apiKey}`
+                `${googlePlaceAutocompleteURI}?key=${this.apiKey}${queryString}`
             );
             return result.data;
         } catch (e) {
@@ -29,13 +46,79 @@ export default class GooglePlace {
         }
     }
 
-    async placeDetails(placeId: string): Promise<PlaceDetailHTTPResult> {
+    async placeDetails(
+        options: PlaceDetailOptions
+    ): Promise<PlaceDetailHTTPResult> {
         if (!this.apiKey) throw new Error('api key was not provided');
 
         try {
+            const queryString = objectToQuery(options);
             const result = await axios.get(
-                `${googlePlaceDetailsURI}?place_id=${placeId}&key=${this.apiKey}`
+                `${googlePlaceDetailsURI}?key=${this.apiKey}${queryString}`
             );
+            return result.data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    async findPlaceSearch(
+        options: FindPlaceSearchOptions
+    ): Promise<FindPlaceSearchHTTPResult> {
+        if (!this.apiKey) throw new Error('api key was not provided');
+
+        try {
+            const queryString = objectToQuery(options);
+            const result = await axios.get(
+                `${googlePlaceFindPlaceSearchURI}?key=${this.apiKey}${queryString}`
+            );
+            return result.data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    async nearbySearch(
+        options: NearbySearchOptions
+    ): Promise<NearbySearchHTTPResult> {
+        if (!this.apiKey) throw new Error('api key was not provided');
+
+        try {
+            const queryString = objectToQuery(options);
+            const result = await axios.get(
+                `${googlePlaceNearbySearchURI}?key=${this.apiKey}${queryString}`
+            );
+            return result.data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    async textSearch(
+        options: TextSearchOptions
+    ): Promise<TextSearchHTTPResult> {
+        if (!this.apiKey) throw new Error('api key was not provided');
+
+        try {
+            const queryString = objectToQuery(options);
+            const result = await axios.get(
+                `${googlePlaceTextSearchURI}?key=${this.apiKey}${queryString}`
+            );
+            return result.data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    async placePhoto(options: PhotoOptions): Promise<BinaryLike> {
+        if (!this.apiKey) throw new Error('api key was not provided');
+
+        try {
+            const queryString = objectToQuery(options);
+            const result = await axios.get(
+                `${googlePlacePhotoURI}?key=${this.apiKey}${queryString}`
+            );
+
             return result.data;
         } catch (e) {
             throw e;
