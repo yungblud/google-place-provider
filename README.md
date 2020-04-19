@@ -6,11 +6,19 @@ We provide
 
 1. autocomplete
 2. place details
+3. find place search
+4. nearby search
+5. place photo
+6. text search
 
 see original documents of google place
 
 1. [google place autocomplete](https://developers.google.com/places/web-service/autocomplete?hl=ko)
 2. [google place place details](https://developers.google.com/places/web-service/details?hl=ko)
+3. [google place find place search](https://developers.google.com/places/web-service/search#find-place-examples)
+4. [google place nearby search](https://developers.google.com/places/web-service/search#PlaceSearchRequests)
+5. [google place photo](https://developers.google.com/places/web-service/photos#place_photo_response)
+6. [google place text search](https://developers.google.com/places/web-service/search#TextSearchRequests)
 
 # how to use
 
