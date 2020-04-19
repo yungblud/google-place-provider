@@ -26,5 +26,7 @@ export const objectToQuery = (
         queryString += `&language=en`;
     }
 
+    console.log('queryString', queryString);
+
     return queryString;
 };

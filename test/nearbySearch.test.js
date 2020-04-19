@@ -1,18 +1,21 @@
-import dotenv from 'dotenv';
 import GooglePlace from '../lib';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const { GOOGLE_API_KEY: key } = process.env;
 
-describe('place-details', () => {
+describe('nearbySearch', () => {
     const googlePlace = new GooglePlace(key);
 
-    it('is place-details api status OK', () => {
+    it('nearbySearch API Status OK', () => {
         return googlePlace
-            .placeDetails({
+            .nearbySearch({
                 language: 'en',
-                place_id: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
+                radius: 1500,
+                location: '-33.8670522,151.1957362',
+                type: 'restaurant',
+                keyword: 'cruise',
             })
             .then((result) => {
                 expect(result.status).toBe('OK');

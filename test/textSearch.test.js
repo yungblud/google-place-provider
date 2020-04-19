@@ -5,17 +5,16 @@ dotenv.config();
 
 const { GOOGLE_API_KEY: key } = process.env;
 
-describe('autocomplete', () => {
+describe('textSearch', () => {
     const googlePlace = new GooglePlace(key);
 
-    it('is autocomplete api status OK', () => {
+    it('textSearch API Status OK', () => {
         return googlePlace
-            .autocomplete({
-                input: 'hello',
-                language: 'en',
+            .textSearch({
+                query: '123 main street',
             })
             .then((result) => {
-                expect(result.status).toEqual('OK');
+                expect(result.status).toBe('OK');
             });
     });
 });

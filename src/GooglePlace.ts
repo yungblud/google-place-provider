@@ -23,6 +23,7 @@ import {
 import { objectToQuery } from './utils';
 import { BinaryLike } from 'crypto';
 
+// tslint:disable-next-line: no-var-requires
 axios.defaults.adapter = require('axios/lib/adapters/http');
 
 export default class GooglePlace {
